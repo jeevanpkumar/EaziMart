@@ -12,12 +12,12 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, guestId, loading} = useSelector((state) => state.auth);
+  const { user, guestId, loading, error } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
-
 
   const redirect = new URLSearchParams(location.search).get("redirect") || "/";
   const isCheckoutRedirect = redirect.includes("checkout");
+
   useEffect(() => {
     if (user) {
       if (cart?.products.length > 0 && guestId) {
@@ -34,6 +34,7 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
+
   return (
     <div className="flex">
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-12">
@@ -42,9 +43,11 @@ const Login = () => {
             <h2 className="text-xl font-medium">EaziMart</h2>
           </div>
           <h2 className="text-2xl font-bold text-center mb-6">Hey there!</h2>
-          <p className="text-center mb-6">
-            Enter your username and password to Login
-          </p>
+          <p className="text-center mb-6">Enter your username and password to Login</p>
+
+          {/* Show error if login failed */}
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+
           <div className='mb-4'>
             <label className="block text-sm font-semibold mb-2">Email</label>
             <input
@@ -64,10 +67,17 @@ const Login = () => {
               className="w-full p-2 border rounded"
               placeholder="Enter your password" />
           </div>
-          <button type="submit" className='w-full bg-black text-white p-2 rounded-lg font-semibold hover:bg-gray-800 transition'>{loading ? "loading.." : "Sign In"} </button>
+          <button
+            type="submit"
+            className='w-full bg-black text-white p-2 rounded-lg font-semibold hover:bg-gray-800 transition'
+            disabled={loading} // Disable button when loading
+          >
+            {loading ? "Loading..." : "Sign In"}
+          </button>
+
           <p className="mt-6 text-center text-sm">
             Don't have an account?{" "}
-            <Link to={ `/register?redirect=${encodeURIComponent(redirect)}`} className="text-blue-500">
+            <Link to={`/register?redirect=${encodeURIComponent(redirect)}`} className="text-blue-500">
               Register
             </Link>
           </p>
@@ -79,7 +89,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
