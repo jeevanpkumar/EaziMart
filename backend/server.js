@@ -15,28 +15,9 @@ const adminOrderRoutes = require("./routes/adminOrderRoutes");
 const paymentRoutes = require('./routes/paymentRoutes')
 const connectDB = require("./config/db");
 
-const corsOptions = {
-    origin: (origin, callback) => {
-        const allowedOrigins = [
-            'http://192.168.98.73:5173',
-            'https://threadscape-kai.vercel.app',
-            'http://localhost:5173',
-            process.env.FRONTEND_URL,
-        ];
 
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-            console.log("allowedOrigin :", origin)
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-};
 
-app.use(cors(corsOptions));
+app.use(cors);
 
 
 

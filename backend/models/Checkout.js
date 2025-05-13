@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { MdProductionQuantityLimits } = require("react-icons/md");
 const checkoutItemSchema = new mongoose.Schema({
 
     productId: {
