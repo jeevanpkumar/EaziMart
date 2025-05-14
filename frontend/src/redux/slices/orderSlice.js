@@ -25,7 +25,7 @@ export const fetchOrderDetails = createAsyncThunk(
     async (orderId, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `${import.meta.env.VITE_BACKEND_URL} /api/orders / ${orderId}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("userToken")}`,
@@ -42,7 +42,7 @@ export const fetchOrderDetails = createAsyncThunk(
 
 const orderSlice = createSlice({
     name: "orders",
-initialState: {
+    initialState: {
         orders: [],
         totalOrders: 0,
         orderDetails: null,
@@ -62,10 +62,10 @@ initialState: {
             })
             .addCase(fetchUserOrders.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload.message;
+                state.error = action.payload?.message || "Failed to fetch orders";
             })
 
-             .addCase(fetchOrderDetails.pending, (state) => {
+            .addCase(fetchOrderDetails.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
@@ -75,7 +75,7 @@ initialState: {
             })
             .addCase(fetchOrderDetails.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload.message;
+                state.error = action.payload?.message || "Failed to fetch order details";
             })
     },
 });

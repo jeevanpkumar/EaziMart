@@ -22,6 +22,7 @@ useEffect(() => {
             const response = await axios.get(
                 `${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`
             );
+            
             setNewArrivals(response.data);
         } catch (error) {
             console.error(error);

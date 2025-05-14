@@ -15,9 +15,18 @@ import { useSelector } from "react-redux";
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [navDrawer, setNavDrawer] = useState(false);
+
   const location = useLocation();
+  const { user } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state.cart);
+
+
+  const hiddenPaths = ["/login", "/register", "/forgot-password", "/onboarding"];
+  if (hiddenPaths.includes(location.pathname)) return null;
 
   const isHomePage = location.pathname === "/";
+
+
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -27,8 +36,7 @@ const NavBar = () => {
     setNavDrawer(!navDrawer);
   };
 
-  const { user } = useSelector((state) => state.auth);
-  const { cart } = useSelector((state) => state.cart);
+ 
   const cartItemCount =
     cart?.products?.reduce((total, product) => total + product.quantity, 0) ||
     0;
