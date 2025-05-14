@@ -256,12 +256,13 @@ router.get("/similar/:id", async (req, res) => {
             gender: product.gender,
             category: product.category,
         }).limit(4);
-        res.json(similarProducts);
+        return res.json(similarProducts);
     } catch (error) {
         console.error(error);
+        return res.status(500).send("Server Error"); 
     }
-    res.status(500).send("Server Error")
 });
+
 
 
 

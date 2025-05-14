@@ -1,7 +1,6 @@
 const express = require("express");
 const Checkout = require("../models/Checkout");
 const Cart = require("../models/Cart");
-const Product = require("../models/Product");
 const Order = require("../models/Order");
 const { protect } = require("../middleware/authMiddleware");
 const router = express.Router()
@@ -39,7 +38,7 @@ router.post("/", protect, async (req, res) => {
             paymentStatus: "Pending",
             isPaid: false,
         });
-        console.log('Checkout created for user: ${req.user._id}');
+        console.log(`Checkout created for user: ${req.user._id}`);
         res.status(201).json(newCheckout);
     } catch (error) {
         console.error("Error Creating checkout session:", error);
