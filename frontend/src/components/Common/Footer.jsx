@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 import { TbBrandMeta } from "react-icons/tb"
 import { IoLogoInstagram } from 'react-icons/io'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { RiDeleteBin3Line } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
 import { removeFromCart, updateCartItemQuantity } from '../../redux/slices/cartSlice';

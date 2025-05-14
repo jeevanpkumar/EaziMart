@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createCheckout } from '../../redux/slices/checkoutSlice';
 import StripeIntegration from "./StripeIntegration";
 
