@@ -18,12 +18,22 @@ const connectDB = require("./config/db");
 
 
 
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://eazi-mart-gdsf.vercel.app'
+];
+
 app.use(cors({
-  origin:
-  "https://eazi-mart-gdsf.vercel.app/",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
-}
-));
+}));
 
 
 
@@ -39,7 +49,7 @@ console.log(process.env.PORT)
 connectDB();
 
 app.get("/", (req, res) => {
-    res.send("WELCOME TO EaziMArt API!");
+  res.send("WELCOME TO EaziMArt API!");
 });
 
 app.use("/api/users", userRoutes);
