@@ -18,7 +18,12 @@ const connectDB = require("./config/db");
 
 
 
-app.use(cors());
+app.use(cors({
+  origin:
+  "https://eazi-mart-gdsf.vercel.app/",
+  credentials: true,
+}
+));
 
 
 
