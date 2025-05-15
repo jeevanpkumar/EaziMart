@@ -20,9 +20,9 @@ const connectDB = require("./config/db");
 
 
 const allowedOrigins = [
+   'https://eazi-mart-bxw2.vercel.app',
   'http://localhost:5173',
-  'https://eazi-mart-bxw2-git-main-jeevanpkumars-projects.vercel.app',
-  'https://eazi-mart.vercel.app',
+ 
 ];
 
 app.use(cors({
