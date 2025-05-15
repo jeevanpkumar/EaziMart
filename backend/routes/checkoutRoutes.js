@@ -5,6 +5,7 @@ const Order = require("../models/Order");
 const { protect } = require("../middleware/authMiddleware");
 const router = express.Router();
 
+
 // GET /api/checkout/:id
 router.get("/:id", protect, async (req, res) => {
   try {
@@ -20,8 +21,10 @@ router.get("/:id", protect, async (req, res) => {
 });
 
 // POST /api/checkout
+// POST /api/checkout (testing without protect middleware)
 router.post("/", protect, async (req, res) => {
   console.log("Checkout POST body:", req.body);
+
   const { checkoutItems, shippingAddress, paymentMethod, totalPrice } = req.body;
 
   if (!checkoutItems || !Array.isArray(checkoutItems) || checkoutItems.length === 0) {
