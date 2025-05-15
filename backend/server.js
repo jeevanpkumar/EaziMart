@@ -21,8 +21,8 @@ const connectDB = require("./config/db");
 
 const allowedOrigins = [
   'https://eazimart.onrender.com',
-   'https://eazi-mart-bxw2.vercel.app',
-  'http://localhost:5173',
+   'https://eazi-mart-poj7.vercel.app',
+  'http://localhost:5173'
  
 ];
 
