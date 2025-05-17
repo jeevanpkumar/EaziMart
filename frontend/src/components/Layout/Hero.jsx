@@ -41,7 +41,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <Link
-              to="#"
+              to="collections/all"
               className="bg-white text-gray-900 px-6 py-2 rounded-sm text-lg font-medium"
             >
               Shop Now
