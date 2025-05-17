@@ -19,23 +19,27 @@ const connectDB = require("./config/db");
 
 
 
-const allowedOrigins = [
-  'https://eazimart.onrender.com',
-   'https://eazi-mart-poj7.vercel.app',
-  'http://localhost:5173'
- 
-];
-
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'https://eazimart-gxrv.onrender.com',
+      'https://eazi-mart-poj7.vercel.app'
+    ];
+
+   
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log(`❌ Blocked by CORS: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
-}));
+};
+
+app.use(cors(corsOptions));
+
 
 
 
@@ -61,13 +65,13 @@ app.use("/api/checkout", checkoutRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api", subscriberRoutes);
-
+app.use('/api/payment', paymentRoutes);
 
 
 app.use("/api/admin/users", adminRoutes);
 app.use("/api/admin/products", productAdminRoutes);
 app.use("/api/admin/orders", adminOrderRoutes);
-app.use('/api/payment', paymentRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
