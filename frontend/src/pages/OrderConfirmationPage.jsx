@@ -5,13 +5,6 @@ import { getCheckout } from '../redux/slices/checkoutSlice';
 import { clearCart } from '../redux/slices/cartSlice';
 import axios from 'axios';
 
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { getCheckout } from '../redux/slices/checkoutSlice';
-import { clearCart } from '../redux/slices/cartSlice';
-import axios from 'axios';
-
 const OrderConfirmationPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
